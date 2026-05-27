@@ -19,8 +19,8 @@ nextellar my-app --typescript
 nextellar my-app -t
 ```css
 
-**Default:** `true`  
-**Type:** Boolean  
+**Default:** `true`
+**Type:** Boolean
 **Status:** Supported
 
 ### --javascript, -j
@@ -33,8 +33,8 @@ nextellar my-app --javascript
 nextellar my-app -j
 ```css
 
-**Default:** `false`  
-**Type:** Boolean  
+**Default:** `false`
+**Type:** Boolean
 **Status:** Coming Soon
 
 > **Note:** JavaScript support is planned for a future release. Currently, only TypeScript projects are supported.
@@ -49,8 +49,8 @@ Override the default Horizon endpoint.
 nextellar my-app --horizon-url https://horizon.stellar.org
 ```css
 
-**Default:** `https://horizon-testnet.stellar.org`  
-**Type:** String (URL)  
+**Default:** `https://horizon-testnet.stellar.org`
+**Type:** String (URL)
 **Validation:** Must be a valid HTTP/HTTPS URL
 
 **Common Values:**
@@ -67,8 +67,8 @@ Override the default Soroban RPC endpoint.
 nextellar my-app --soroban-url https://soroban-rpc.stellar.org
 ```css
 
-**Default:** `https://soroban-testnet.stellar.org`  
-**Type:** String (URL)  
+**Default:** `https://soroban-testnet.stellar.org`
+**Type:** String (URL)
 **Validation:** Must be a valid HTTP/HTTPS URL
 
 **Common Values:**
@@ -88,8 +88,8 @@ nextellar my-app --wallets freighter,xbull,ledger
 nextellar my-app -w freighter,albedo
 ```text
 
-**Default:** `freighter,albedo,lobstr`  
-**Type:** Comma-separated string  
+**Default:** `freighter,albedo,lobstr`
+**Type:** Comma-separated string
 **Validation:** Must be valid wallet names
 
 **Supported Wallets:**
@@ -123,7 +123,7 @@ Skip automatic dependency installation.
 nextellar my-app --skip-install
 ```text
 
-**Default:** `false`  
+**Default:** `false`
 **Type:** Boolean
 
 **Use Cases:**
@@ -148,8 +148,8 @@ Choose which package manager to use.
 nextellar my-app --package-manager pnpm
 ```css
 
-**Default:** Auto-detected  
-**Type:** String  
+**Default:** Auto-detected
+**Type:** String
 **Options:** `npm`, `yarn`, `pnpm`
 
 **Detection Priority:**
@@ -167,8 +167,8 @@ Set installation timeout in milliseconds.
 nextellar my-app --install-timeout 3600000
 ```css
 
-**Default:** `1200000` (20 minutes)  
-**Type:** Number (milliseconds)  
+**Default:** `1200000` (20 minutes)
+**Type:** Number (milliseconds)
 **Range:** `60000` - `7200000` (1 min - 2 hours)
 
 **Use Cases:**
@@ -197,7 +197,7 @@ nextellar my-app --defaults
 nextellar my-app -d
 ```css
 
-**Default:** `false`  
+**Default:** `false`
 **Type:** Boolean
 
 **Use Cases:**
