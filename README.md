@@ -86,7 +86,7 @@ Your content here...
 
 ## License
 
-MIT (c) 2025 [Nextellar Labs](https://github.com/nextellarlabs)
+MIT (c) 2026 [Nextellar Labs](https://github.com/nextellarlabs)
 
 ---
 

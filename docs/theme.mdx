@@ -1,75 +1,102 @@
 ---
-title: Theme
-description: 'Learn how to customize the theme of your project with easy-to-use CSS variables for light and dark modes. This guide covers background and foreground colors, primary and secondary branding colors, and provides a clear structure for modifying the theme to suit your design needs.'
+title: Theming and Dark Mode
+description: 'Learn how theme switching, dark mode, and design tokens work in the Nextellar docs.'
 date: 2025-03-12
 ---
 
-# Theming in Your Project
+# Theming and Dark Mode
 
 ## Overview
 
-The theming system in your project is defined in `src/global.css`. It includes both **light** and **dark** themes, ensuring consistency throughout the application. Any changes to themes should be made in this file to maintain a unified styling approach.
+The docs use `next-themes` to switch between light mode, dark mode, and the
+visitor's system preference. The active theme is applied as a class on the
+document, so Tailwind's `dark:` utilities and the CSS variables in
+`src/app/globals.css` update together.
 
-## Understanding Foreground and Background
+## Switching Themes
 
-- **Background**: Represents the underlying surface color of an element, such as page backgrounds, cards, and modals.
-- **Foreground**: Refers to everything that appears in front of the background, such as text, icons, and interactive elements.
-- Maintaining a proper contrast between foreground and background ensures readability and accessibility.
+Use the theme toggle in the docs navigation to switch between light and dark
+mode. The toggle calls `setTheme` from `next-themes`, and the provider in
+`src/app/layout.tsx` is configured with:
 
-## Primary and Secondary Colors
+```tsx
+<ThemeProvider
+  attribute="class"
+  defaultTheme="system"
+  enableSystem
+  disableTransitionOnChange
+>
+  {children}
+</ThemeProvider>
+```
 
-- **Primary Color**: The main color used in the UI, typically for branding, buttons, and highlights.
-- **Secondary Color**: A complementary color used for less prominent elements, such as secondary buttons and backgrounds.
+Because `defaultTheme` is set to `system`, first-time visitors see the theme
+that matches their operating system preference. After a visitor chooses a
+theme, `next-themes` stores that choice and reuses it on later visits.
 
-These colors are defined using **HSL variables**, making it easier to adjust them globally without modifying individual components.
+## Theme Tokens
 
-## Where to Modify Themes
-
-To update themes, modify the variables in `@layer base` inside `global.css`. Below is a highlighted snippet showing where developers should make changes:
+Theme tokens are defined in `src/app/globals.css`. The light theme lives under
+`:root`, and the dark theme lives under `.dark`.
 
 ```css
 :root {
-  /* Light Mode */
-  --background: 0 0% 100%; /* White */
-  --foreground: 0 0% 9%; /* Black */
-
-  --primary: 222.2 47.4% 11.2%;
-  --primary-foreground: 210 40% 98%;
-
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
+  --background: 0 0% 100%;
+  --foreground: 0 0% 0%;
+  --primary: 0 0% 0%;
+  --primary-foreground: 0 0% 100%;
 }
 
 .dark {
-  /* Dark Mode */
-  --background: 0 0% 4%; /* Very dark */
-  --foreground: 0 0% 93%; /* Light text */
-
-  --primary: 210 40% 98%;
-  --primary-foreground: 222.2 47.4% 11.2%;
-
-  --secondary: 217.2 32.6% 17.5%;
-  --secondary-foreground: 210 40% 98%;
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --primary: 0 0% 100%;
+  --primary-foreground: 0 0% 0%;
 }
-```css
+```
 
-## Additional Theme Variables
+The `@theme` block maps those variables to Tailwind color tokens such as
+`bg-background`, `text-foreground`, `border-border`, and `bg-primary`.
+Components should use those tokens when possible so they inherit the active
+theme automatically.
 
-Other UI components also use variables to define styling, including:
+## Working With Dark Mode
 
-- **Borders** (`--border`, `--border-header`)
-- **Status Colors** (`--success`, `--warning`, `--destructive`)
-- **Components** (`--card`, `--popover`, `--button`)
-- **Sidebar** (`--sidebar`, `--sidebar-active`)
+For shared surfaces, prefer theme tokens:
 
-Developers can customize these variables based on design requirements.
+```tsx
+<section className="bg-background text-foreground border border-border">
+  Themed content
+</section>
+```
+
+Use `dark:` utilities when a component needs a specific override in dark mode:
+
+```tsx
+<div className="bg-white text-black dark:bg-black dark:text-white">
+  Custom themed content
+</div>
+```
+
+Images and logos can also switch by using `dark:hidden` and `dark:block`, as
+the docs layout does for the light and dark logo assets.
+
+## Limitations
+
+- Theme changes depend on the `.dark` class, so styles outside Tailwind and
+  `globals.css` need to account for that class explicitly.
+- Theme tokens use HSL channel values. Keep the same `H S% L%` format when
+  editing variables.
+- The toggle currently switches between light and dark. System preference is
+  still used as the default, but there is no separate system option in the
+  toggle UI.
+- Third-party embeds, images, and custom code blocks may need their own dark
+  mode treatment if they do not use the shared tokens.
 
 ## Summary
 
-- **Make theme changes in `src/global.css`**.
-- **Understand foreground (text, icons) vs. background (page, containers)**.
-- **Modify primary and secondary colors for branding consistency**.
-- **Ensure contrast for accessibility**.
-- **Leverage theme variables for easy customization**.
-
-For further modifications, refer to the full theme structure in `global.css`.
+- Switch themes with the docs navigation toggle.
+- Edit theme tokens in `src/app/globals.css`.
+- Use token-based Tailwind classes for reusable components.
+- Add `dark:` utilities only when a component needs a dark-mode-specific
+  override.
