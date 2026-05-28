@@ -171,45 +171,76 @@ Test that everything works:
 3. **Wallet connection works**: Click "Connect Wallet" button
 4. **Hot reload works**: Edit `src/app/page.tsx` and see changes instantly
 
+Need help? Jump to [Troubleshooting](#troubleshooting).
+
 ## Troubleshooting
 
-### Installation Fails
+### Installation fails during scaffolding
 
-If `npm install` fails during scaffolding:
+If `npx nextellar my-stellar-app` stops while installing dependencies, retry manually from the generated folder:
 
 ```bash
-# The CLI will show you the exact command to retry
 cd my-stellar-app
 npm install
 ```bash
 
-**Common causes:**
+Fixes:
 
-- Slow network connection (increase timeout: `--install-timeout 3600000`)
-- npm registry issues (try `npm config set registry https://registry.npmjs.org/`)
-- Disk space (ensure you have at least 500MB free)
+- Slow network or registry timeouts: `npx nextellar my-stellar-app --install-timeout 3600000`
+- npm registry issues: `npm config set registry https://registry.npmjs.org/`
+- Disk or quota issues: free at least 500MB before retrying
 
-### Port 3000 Already in Use
+### Unsupported Node version
+
+If the scaffold fails before install, confirm your Node version:
 
 ```bash
-# Use a different port
+node --version
+```bash
+
+Fixes:
+
+- Update to Node.js 20.18.0 or later
+- Use a node version manager like `nvm` or `fnm`
+
+### Port 3000 already in use
+
+If `npm run dev` fails because the port is occupied:
+
+```bash
 npm run dev -- -p 3001
-```text
+```bash
 
-### TypeScript Errors
+Fix:
+
+- Start the app on a different port with `-p <port>`
+
+### TypeScript or build errors after install
+
+If `npm run build` reports TypeScript or type-check errors:
 
 ```bash
-# Rebuild TypeScript
 npm run build
-```text
+```bash
 
-### Module Not Found
+Fixes:
+
+- Confirm dependencies installed correctly: `rm -rf node_modules package-lock.json && npm install`
+- Re-run the scaffold command with the same package manager used in the project
+
+### Module not found or dependency resolution issues
+
+If a dependency is missing after installation:
 
 ```bash
-# Clear cache and reinstall
 rm -rf node_modules package-lock.json
 npm install
 ```bash
+
+Fixes:
+
+- Clear the package cache and reinstall dependencies
+- Confirm the project was created with your expected package manager
 
 ## Next Steps
 
