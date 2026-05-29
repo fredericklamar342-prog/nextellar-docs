@@ -152,3 +152,33 @@ Examples planned for future gallery entries (from the live [Examples index](/doc
 - **Multi-Sig Wallet** — Shared account management
 
 ---
+
+## Verification
+
+This draft is stored outside `docs/` and does not affect the Contentlayer build. All internal links point to existing pages under `docs/`. When promoted to a live page (proposed: `docs/examples/gallery.mdx`):
+
+```bash
+pnpm build:content
+pnpm check:links
+```
+
+### Link checklist
+
+| Link target | Status |
+| ----------- | ------ |
+| `/docs/examples/payment-app` | Live page |
+| `/docs/examples` | Live page |
+| `/docs/hooks/wallet-provider` | Live page |
+| `/docs/integrations/soroban` | Live page |
+| `/docs/hooks/use-stellar-payment` | Live page |
+| `/docs/cli/cheat-sheet` | Live page |
+| External GitHub and Stellar links | HTTPS, no auth required |
+
+### Rendering checklist
+
+- [ ] Frontmatter includes `title` and `description`
+- [ ] Code blocks use `tsx` and `bash` language tags
+- [ ] Tables render in light and dark mode
+- [ ] Page listed under **Examples** in sidebar
+
+---
