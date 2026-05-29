@@ -9,10 +9,20 @@ MDX pages can use the components registered in `src/components/mdx-components.ts
 
 ## General Rules
 
-- Component names are case-sensitive.
-- Prefer Markdown for normal prose, headings, lists, tables, and links.
-- Use custom components when the page needs interaction, a preview, a callout, or a specialized visual.
-- Keep examples small enough to read in the docs page where they appear.
+| Component                                              | Purpose                                    |
+| ------------------------------------------------------ | ------------------------------------------ |
+| `Note`                                                 | Callout box for tips, warnings, and info   |
+| `Tabs`, `TabsList`, `Tab`, `TabsContent`               | Tabbed content panels                      |
+| `Steps`, `Step`, `StepTitle`, `StepContent`            | Numbered step sequences                    |
+| `FolderTree`, `Folder`, `File`                         | Visual directory trees                     |
+| `Button`                                               | Styled action button                       |
+| `Mermaid`                                              | Render Mermaid diagrams                    |
+| `CodeTabs`                                             | Syntax-highlighted code with language tabs |
+| `Dialog`, `DialogTrigger`, `DialogContent`             | Modal dialog                               |
+| `Popover`, `PopoverTrigger`, `PopoverContent`          | Floating popover                           |
+| `Select`, `SelectContent`, `SelectItem`, `SelectValue` | Dropdown select                            |
+| `Checkbox`, `Label`, `Input`                           | Form controls                              |
+| `Menu`, `MenuItem`, `MenuTrigger`, `PopMenu`           | Dropdown menu                              |
 
 ## Content Components
 
@@ -26,34 +36,14 @@ MDX pages can use the components registered in `src/components/mdx-components.ts
 | `CustomSyntaxHighlighter` | `tabs`, `className?`, `themeMode?: "light" \| "dark"`, `lightTheme?`, `darkTheme?`, `indicatorColor?` | Use `CodeTabs` unless you need theme or indicator options. |
 
 ```mdx
-<Note type="tip">
-  Use `pnpm build:content` after adding or moving MDX files.
-</Note>
+<Note>Run `pnpm build:content` after adding any new MDX file.</Note>
+```
 
 <Preview>
   <SearchButton placeholder="Search docs" size="md" />
 </Preview>
 
-<Mermaid chart={`graph LR
-  A[Wallet] --> B[Hook]
-  B --> C[Horizon]
-`} />
-
-<CodeTabs
-  tabs={{
-    tsx: { syntax: "const wallet = useStellarWallet();", language: "tsx" },
-    js: { syntax: "const wallet = useStellarWallet();", language: "js" },
-  }}
-/>
-
-<CustomSyntaxHighlighter
-  themeMode="dark"
-  indicatorColor="bg-blue-900"
-  tabs={{
-    bash: { syntax: "pnpm build:content", language: "bash" },
-  }}
-/>
-```
+<Note>Run `pnpm build:content` after adding any new MDX file.</Note>
 
 ## Tabs
 
@@ -64,20 +54,16 @@ MDX pages can use the components registered in `src/components/mdx-components.ts
 | `Tab` | `value: string`, `children`, `className?` | Must be rendered inside `Tabs`. |
 | `TabsContent` | `value: string`, `children`, `className?` | Must be rendered inside `Tabs`. Hidden content is not mounted. |
 
-```mdx
-<Tabs defaultValue="testnet">
+````mdx
+<Tabs defaultValue="npm">
   <TabsList>
     <Tab value="testnet">Testnet</Tab>
     <Tab value="mainnet">Mainnet</Tab>
   </TabsList>
-  <TabsContent value="testnet">
-    Use `https://horizon-testnet.stellar.org`.
-  </TabsContent>
-  <TabsContent value="mainnet">
-    Use `https://horizon.stellar.org`.
-  </TabsContent>
+  <TabsContent value="npm">```bash npm install ```</TabsContent>
+  <TabsContent value="pnpm">```bash pnpm install ```</TabsContent>
 </Tabs>
-```
+````
 
 ## Steps
 
@@ -120,9 +106,16 @@ MDX pages can use the components registered in `src/components/mdx-components.ts
 
 ```mdx
 <FolderTree>
-  <Folder element="docs" defaultOpen={true}>
-    <Folder element="guides">
-      <File>mdx-custom-components.mdx</File>
+  <Folder element="src" defaultOpen={true}>
+    <Folder element="hooks">
+      <File>
+        <p>useStellarWallet.ts</p>
+      </File>
+    </Folder>
+    <Folder element="components">
+      <File>
+        <p>WalletConnectButton.tsx</p>
+      </File>
     </Folder>
   </Folder>
 </FolderTree>
@@ -130,16 +123,20 @@ MDX pages can use the components registered in `src/components/mdx-components.ts
 
 ## Form Controls
 
-| Component | Props | Constraints |
-| --- | --- | --- |
-| `Button` | `variant?: "primary" \| "secondary" \| "outline" \| "none"`, `size?: "xs" \| "sm" \| "md" \| "lg" \| "xl"`, standard `button` props | Use for interactive examples or mock controls. |
-| `Input` | `variant?: "outline" \| "filled" \| "none"`, `size?: "xs" \| "sm" \| "md" \| "lg" \| "xl"`, `fullWidth?: boolean`, `isError?: boolean`, `isLoading?: boolean`, standard `input` props | Avoid collecting real secrets in documentation examples. |
-| `Checkbox` | Standard checkbox `input` props | Use `defaultChecked` for static examples. |
-| `Label` | `intent?: "default" \| "muted" \| "error"`, standard `label` props | Pair with an input `id` when labeling a control. |
-| `Select` | `multiple?: boolean`, `search?: boolean`, `value?: string \| string[]`, `onSelect?`, `className?`, `disabled?` | Must wrap `SelectValue`, `SelectContent`, and `SelectItem`. |
-| `SelectValue` | `placeholder?: string`, standard `div` props | Must be inside `Select`. |
-| `SelectContent` | Standard `div` props | Must be inside `Select`. |
-| `SelectItem` | `value: string`, standard `div` props | `value` is used for selection and search filtering. |
+<FolderTree>
+  <Folder element="src" defaultOpen={true}>
+    <Folder element="hooks">
+      <File>
+        <p>useStellarWallet.ts</p>
+      </File>
+    </Folder>
+    <Folder element="components">
+      <File>
+        <p>WalletConnectButton.tsx</p>
+      </File>
+    </Folder>
+  </Folder>
+</FolderTree>
 
 ```mdx
 <Button variant="primary" size="sm">Connect wallet</Button>
@@ -183,71 +180,12 @@ MDX pages can use the components registered in `src/components/mdx-components.ts
 | `MenuItem` | Standard `button` props | Must be inside `PopMenu` for menu semantics. |
 
 ```mdx
-<Dialog>
-  <DialogTrigger>
-    <Button>Open dialog</Button>
-  </DialogTrigger>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>Network settings</DialogTitle>
-      <DialogDescription>Review the selected Stellar network.</DialogDescription>
-    </DialogHeader>
-    <p>Current network: testnet</p>
-    <DialogFooter>
-      <DialogCloseTrigger>
-        <Button variant="secondary">Close</Button>
-      </DialogCloseTrigger>
-    </DialogFooter>
-  </DialogContent>
-</Dialog>
-
-<Popover position="bottom">
-  <PopoverTrigger>
-    <Button variant="outline">Endpoint</Button>
-  </PopoverTrigger>
-  <PopoverContent className="p-3">
-    Horizon testnet endpoint
-    <PopoverClose className="mt-2 text-sm">Close</PopoverClose>
-  </PopoverContent>
-</Popover>
-
-<Menu>
-  <MenuTrigger>
-    <Button variant="outline">Actions</Button>
-  </MenuTrigger>
-  <PopMenu>
-    <MenuItem>Copy endpoint</MenuItem>
-    <MenuItem>Open reference</MenuItem>
-  </PopMenu>
-</Menu>
-```
-
-## Navigation Components
-
-| Component | Props | Constraints |
-| --- | --- | --- |
-| `NavMenu` | `children`, `className?` | Use for compact navigation previews. |
-| `NavMenuList` | Standard `ul` props | Must contain `NavMenuItem` children. |
-| `NavMenuItem` | Standard `li` props | Provides hover group behavior for content. |
-| `NavMenuTrigger` | Standard `button` props | Place before matching content. |
-| `NavMenuContent` | `position?: "up" \| "down"`, standard `div` props | Must be inside `NavMenuItem`. |
-| `NavListItem` | `href: string`, `title: string`, `children` | Renders a linked list item for `NavMenuContent`. |
-
-```mdx
-<NavMenu>
-  <NavMenuList>
-    <NavMenuItem>
-      <NavMenuTrigger>Guides</NavMenuTrigger>
-      <NavMenuContent>
-        <ul className="grid gap-2 p-3">
-          <NavListItem href="/docs/guides/add-docs-page" title="Add a page">
-            Create and link a new documentation route.
-          </NavListItem>
-        </ul>
-      </NavMenuContent>
-    </NavMenuItem>
-  </NavMenuList>
-</NavMenu>
+<CodeTabs
+  tabs={{
+    tsx: { syntax: 'const { address } = useStellarWallet();', language: 'tsx' },
+    js: { syntax: 'const { address } = useStellarWallet();', language: 'js' },
+  }}
+/>
 ```
 
 ## Sidebar Components
