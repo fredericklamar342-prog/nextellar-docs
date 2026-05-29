@@ -47,3 +47,48 @@ Focus on actionable signals that help maintainers prioritize documentation work.
 - Cross-site tracking or third-party ad pixels
 
 ---
+
+## Feedback Mechanism
+
+Give readers a low-friction way to report outdated content, confusing steps, or missing topics.
+
+### Per-page feedback widget
+
+Add a small footer component on every docs page:
+
+```tsx
+// Proposed: src/components/DocsFeedback.tsx
+'use client';
+
+export function DocsFeedback({ pageSlug }: { pageSlug: string }) {
+  return (
+    <div className="border-t pt-4 mt-8 text-sm">
+      <p>Was this page helpful?</p>
+      <button onClick={() => submitFeedback(pageSlug, 'yes')}>Yes</button>
+      <button onClick={() => submitFeedback(pageSlug, 'no')}>No</button>
+      <a href={`https://github.com/nextellarlabs/nextellar-docs/issues/new?labels=docs&title=Docs+feedback:+${pageSlug}`}>
+        Suggest an improvement
+      </a>
+    </div>
+  );
+}
+```
+
+### GitHub Discussions channel
+
+Create a **Documentation Feedback** category in [GitHub Discussions](https://github.com/nextellarlabs/nextellar/discussions) where readers can ask questions that do not warrant an issue.
+
+### Maintainer workflow
+
+1. **Weekly triage** — Review feedback events and zero-result searches.
+2. **Label issues** — Tag with `docs-feedback` and the affected page slug.
+3. **Close the loop** — Reply in the discussion or issue when content is updated.
+4. **Quarterly review** — Publish a short changelog of docs improvements driven by reader feedback.
+
+### Success criteria
+
+- Median time from feedback submission to maintainer acknowledgment: **< 5 business days**
+- At least **80%** of pages receive a feedback signal within 90 days of launch
+- Zero-result search rate decreases quarter over quarter
+
+---
