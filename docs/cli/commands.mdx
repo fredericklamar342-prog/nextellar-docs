@@ -142,6 +142,22 @@ nextellar doctor [options]
 | -------- | ------------------------------------------------ |
 | `--json` | Output results as JSON for CI integration        |
 
+**What it checks:**
+
+| Check          | Required | Description                                              |
+| -------------- | -------- | -------------------------------------------------------- |
+| Node.js        | Yes      | Version 20 or later                                      |
+| npm            | Yes      | Package manager bundled with Node.js                     |
+| yarn           | No       | Optional package manager                                 |
+| pnpm           | No       | Optional package manager                                 |
+| Git            | Yes      | Version control for project scaffolding                  |
+| Rust           | No       | Needed for Soroban contract development                  |
+| Stellar CLI    | No       | Needed for contract deployment and testing               |
+| wasm32 target  | No       | Rust target for compiling Soroban contracts              |
+| Horizon API    | Yes      | Reachability of the default testnet Horizon endpoint     |
+| Soroban RPC    | No       | Reachability of the default testnet Soroban RPC endpoint |
+| Free memory    | Yes      | At least 1 GB of available RAM                           |
+
 ### nextellar deploy
 
 Validate and prepare your project for production deployment. This command checks that your Horizon and Soroban RPC endpoints are properly configured, and builds a optimized production bundle of your Stellar dApp.
