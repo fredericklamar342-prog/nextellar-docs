@@ -79,11 +79,11 @@ export const sidebarNav: SidebarSection[] = [
   {
     title: 'SDK & Reference',
     icon: <Database className="h-5 w-5" />,
-    defaultOpen: false,
+    defaultOpen: true,
     pages: [
       { title: 'Overview', href: '/docs/sdk/overview' },
-      { title: 'Hooks', href: '/docs/hooks' },
       { title: 'API Reference', href: '/docs/sdk/api-reference' },
+      { title: 'Wallet Integration', href: '/docs/sdk/wallet-integration' },
     ],
   },
   {
@@ -105,9 +105,21 @@ export const sidebarNav: SidebarSection[] = [
     ],
   },
   {
+    title: 'CLI',
+    icon: <Zap className="h-5 w-5" />,
+    defaultOpen: false,
+    pages: [
+      { title: 'Overview', href: '/docs/cli/overview' },
+      { title: 'Commands', href: '/docs/cli/commands' },
+      { title: 'Cheat Sheet', href: '/docs/cli/cheat-sheet' },
+      { title: 'Flags & Options', href: '/docs/cli/flags' },
+      { title: 'Scaffolding Templates', href: '/docs/cli/templates' },
+    ],
+  },
+  {
     title: 'Integrations',
     icon: <Plug className="h-5 w-5" />,
-    defaultOpen: true,
+    defaultOpen: false,
     pages: [
       { title: 'Stellar Horizon', href: '/docs/integrations/horizon' },
       {
@@ -120,6 +132,19 @@ export const sidebarNav: SidebarSection[] = [
       },
       { title: 'WalletConnect', href: '/docs/integrations/walletconnect' },
       { title: 'Testing (MSW)', href: '/docs/integrations/testing' },
+    ],
+  },
+  {
+    title: 'Guides',
+    icon: <BookOpen className="h-5 w-5" />,
+    defaultOpen: false,
+    pages: [
+      { title: 'Contributing', href: '/docs/guides/contributing' },
+      { title: 'Editor Setup', href: '/docs/guides/editor-setup' },
+      { title: 'Testing (Vitest)', href: '/docs/guides/testing' },
+      { title: 'Internationalization', href: '/docs/guides/internationalization' },
+      { title: 'Deployment', href: '/docs/guides/deployment' },
+      { title: 'Glossary', href: '/docs/guides/glossary' },
     ],
   },
   {
