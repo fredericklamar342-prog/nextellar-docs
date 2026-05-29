@@ -1,0 +1,19 @@
+<svg width="640" height="120" viewBox="0 0 640 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="palette-title">
+  <title id="palette-title">Nextellar docs diagram color palette</title>
+  <rect width="640" height="120" fill="#FFFFFF"/>
+  <text x="16" y="24" font-family="system-ui, sans-serif" font-size="12" fill="#000000">Primary palette (light theme)</text>
+  <rect x="16" y="36" width="72" height="48" rx="4" fill="#000000"/>
+  <text x="28" y="66" font-family="system-ui, sans-serif" font-size="10" fill="#FFFFFF">#000</text>
+  <rect x="100" y="36" width="72" height="48" rx="4" fill="#FFFFFF" stroke="#000000" stroke-opacity="0.4"/>
+  <text x="112" y="66" font-family="system-ui, sans-serif" font-size="10" fill="#000000">#FFF</text>
+  <rect x="184" y="36" width="72" height="48" rx="4" fill="#F5F5F5" stroke="#000000" stroke-opacity="0.2"/>
+  <text x="196" y="66" font-family="system-ui, sans-serif" font-size="10" fill="#000000">muted</text>
+  <rect x="268" y="36" width="72" height="48" rx="4" fill="#22C55E"/>
+  <text x="280" y="66" font-family="system-ui, sans-serif" font-size="10" fill="#FFFFFF">success</text>
+  <rect x="352" y="36" width="72" height="48" rx="4" fill="#EAB308"/>
+  <text x="364" y="66" font-family="system-ui, sans-serif" font-size="10" fill="#000000">warning</text>
+  <rect x="436" y="36" width="72" height="48" rx="4" fill="#EF4444"/>
+  <text x="448" y="66" font-family="system-ui, sans-serif" font-size="10" fill="#FFFFFF">error</text>
+  <rect x="520" y="36" width="104" height="48" rx="4" fill="#533483"/>
+  <text x="532" y="66" font-family="system-ui, sans-serif" font-size="10" fill="#FFFFFF">diagram accent</text>
+</svg>

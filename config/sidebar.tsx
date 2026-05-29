@@ -69,6 +69,14 @@ export const sidebarNav: SidebarSection[] = [
       { title: 'Editor Setup', href: '/docs/guides/editor-setup' },
       { title: 'Add a Docs Page', href: '/docs/guides/add-docs-page' },
       {
+        title: 'Diagram & Image Style',
+        href: '/docs/guides/diagram-image-style',
+      },
+      {
+        title: 'Offline Reading Export',
+        href: '/docs/guides/offline-reading',
+      },
+      {
         title: 'Internationalization',
         href: '/docs/guides/internationalization',
       },
@@ -142,7 +150,10 @@ export const sidebarNav: SidebarSection[] = [
       { title: 'Contributing', href: '/docs/guides/contributing' },
       { title: 'Editor Setup', href: '/docs/guides/editor-setup' },
       { title: 'Testing (Vitest)', href: '/docs/guides/testing' },
-      { title: 'Internationalization', href: '/docs/guides/internationalization' },
+      {
+        title: 'Internationalization',
+        href: '/docs/guides/internationalization',
+      },
       { title: 'Deployment', href: '/docs/guides/deployment' },
       { title: 'Glossary', href: '/docs/guides/glossary' },
     ],
