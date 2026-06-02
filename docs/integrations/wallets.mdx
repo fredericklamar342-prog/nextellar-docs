@@ -141,7 +141,7 @@ const { signedTxXdr } = await kit.signTransaction(unsignedXdr, {
 
 Most hooks handle signing internally:
 
-````tsx
+```tsx
 const { sendPayment } = useWallet();
 
 // sendPayment automatically builds, prompts wallet for signing, and submits
@@ -150,7 +150,7 @@ await sendPayment({
   amount: '10',
   asset: 'XLM',
 });
-```typescript
+```
 
 ## Adding More Wallets
 
@@ -175,7 +175,7 @@ const kit = new StellarWalletsKit({
     new xBullModule(), // Add to array
   ],
 });
-````
+```
 
 ## Network Configuration
 
@@ -257,7 +257,7 @@ try {
 
 The `useWallet` hook provides:
 
-````typescript
+```typescript
 interface WalletState {
   connected: boolean; // Is wallet connected?
   publicKey?: string; // Stellar G-address
@@ -268,7 +268,7 @@ interface WalletState {
   refreshBalances: () => Promise<void>;
   sendPayment?: (opts) => Promise<TransactionResponse>;
 }
-```json
+```
 
 ## Freighter-Specific Notes
 
@@ -286,4 +286,3 @@ Freighter is the most popular Stellar wallet. Some specific notes:
 - [WalletProvider](/docs/hooks/wallet-provider) - Context provider docs
 - [useStellarWallet](/docs/hooks/use-stellar-wallet) - Standalone hook docs
 - [Wallet Integration Guide](/docs/sdk/wallet-integration) - Advanced setup
-````

@@ -105,8 +105,7 @@ WalletConnectButton            useStellarWallet
 
                  Stellar Network
        Horizon API            Soroban RPC
-�
-```typescript
+```
 
 ---
 
@@ -128,7 +127,7 @@ export default function RootLayout({ children }) {
     </WalletProvider>
   );
 }
-````
+```
 
 ### 2. Use Pre-built Components
 
@@ -156,7 +155,7 @@ function Dashboard() {
 
 ### 4. Interact with Smart Contracts
 
-````tsx
+```tsx
 import { useSorobanContract } from '@/hooks/useSorobanContract';
 
 function TokenBalance({ contractId }) {
@@ -167,7 +166,7 @@ function TokenBalance({ contractId }) {
     console.log('Token balance:', balance);
   };
 }
-```typescript
+```
 
 ---
 
@@ -185,4 +184,3 @@ function TokenBalance({ contractId }) {
 - [SDK Overview](/docs/sdk/overview) - Full SDK documentation
 - [Hooks Reference](/docs/hooks) - All 8 production hooks
 - [Components](/docs/components/connect-wallet-button) - UI components
-````

@@ -103,10 +103,10 @@ stellar_wallet_name: 'Freighter';
 
 Pre-built button component with loading states and theme support:
 
-````tsx
+```tsx
 <WalletConnectButton theme="light" />
 <WalletConnectButton theme="dark" />
-```json
+```
 
 [Full component documentation](/docs/components/connect-wallet-button)
 
@@ -118,7 +118,7 @@ Context provider for global wallet state:
 <WalletProvider horizonUrl="https://horizon.stellar.org" network="PUBLIC">
   <App />
 </WalletProvider>
-```json
+```
 
 [Full provider documentation](/docs/hooks/wallet-provider)
 
@@ -137,7 +137,7 @@ interface WalletState {
   refreshBalances: () => Promise<void>;
   sendPayment?: (opts) => Promise<TransactionResponse>;
 }
-```typescript
+```
 
 ## Supported Wallets
 
@@ -162,7 +162,7 @@ const kit = new StellarWalletsKit({
     new xBullModule(), // Add new wallet
   ],
 });
-````
+```
 
 ## Error Handling
 
