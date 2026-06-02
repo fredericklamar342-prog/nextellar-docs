@@ -87,7 +87,7 @@ const recentTxs = transactions.filter((tx) => {
   const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
   return txDate > weekAgo;
 });
-```text
+```
 
 ### Group by Type
 
@@ -95,7 +95,7 @@ const recentTxs = transactions.filter((tx) => {
 const paymentTxs = transactions.filter((tx) =>
   tx.operations.some((op) => op.type === 'payment')
 );
-```text
+```
 
 ### Infinite Scroll
 

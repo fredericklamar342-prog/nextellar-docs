@@ -27,13 +27,30 @@ That's it! Your Stellar dApp is ready in under 2 minutes.
 
 ## Installation Methods
 
+### Terminal Support
+
+The Nextellar CLI works with all standard terminal emulators:
+
+- **bash** (Linux, macOS, Windows via WSL/Git Bash)
+- **zsh** (macOS default, Linux)
+- **fish** (Linux, macOS)
+- **PowerShell** (Windows)
+- **Command Prompt** (Windows - limited support)
+- **nu** (Nushell)
+
+**Caveats:**
+
+- Windows Command Prompt has limited support for some CLI features; use PowerShell or Git Bash for full functionality
+- Terminal color output requires ANSI support (most modern terminals support this)
+- Interactive prompts work best in terminals with full UTF-8 support
+
 ### Method 1: npx (Recommended)
 
 No installation required. Run directly:
 
 ```bash
 npx nextellar my-app
-```text
+````
 
 **Pros:**
 
@@ -49,7 +66,7 @@ npx nextellar my-app
 
 Install once, use everywhere:
 
-```bash
+````bash
 npm install -g nextellar
 nextellar my-app
 ```bash
@@ -72,14 +89,14 @@ nextellar my-app
 ```bash
 yarn global add nextellar
 nextellar my-app
-```text
+````
 
 **pnpm:**
 
 ```bash
 pnpm add -g nextellar
 nextellar my-app
-```text
+```
 
 ## CLI Architecture
 
@@ -98,13 +115,13 @@ User Feedback
     Progress Indicators
     Success Messages
     Error Reporting
-```text
+```
 
 ## Command Structure
 
 ```bash
 nextellar <project-name> [options]
-```text
+```
 
 **Components:**
 
@@ -120,7 +137,7 @@ nextellar <project-name> [options]
 npx nextellar my-app
 cd my-app
 npm run dev
-```text
+```
 
 ### Custom Configuration
 
@@ -129,11 +146,11 @@ npx nextellar my-app \
   --package-manager pnpm \
   --horizon-url https://horizon.stellar.org \
   --wallets freighter,xbull
-```text
+```
 
 ### Skip Installation
 
-```bash
+````bash
 npx nextellar my-app --skip-install
 cd my-app
 pnpm install  # Install with your preferred package manager
@@ -174,13 +191,13 @@ nextellar -v
 
 ```bash
 npx nextellar@latest my-app
-```text
+````
 
 **Global install:**
 
 ```bash
 npm update -g nextellar
-```text
+```
 
 ## Troubleshooting
 
@@ -196,7 +213,7 @@ npx nextellar my-app
 
 # Or reinstall globally
 npm install -g nextellar
-```text
+```
 
 ### Permission Errors
 
@@ -210,7 +227,7 @@ npx nextellar my-app
 
 # Or fix npm permissions
 sudo chown -R $(whoami) ~/.npm
-```text
+```
 
 ### Slow Installation
 
@@ -218,7 +235,7 @@ sudo chown -R $(whoami) ~/.npm
 
 **Solution:**
 
-```bash
+````bash
 # Increase timeout
 npx nextellar my-app --install-timeout 3600000
 
