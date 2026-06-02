@@ -23,9 +23,9 @@ This guide covers how to add MSW to your Nextellar project for testing Stellar A
 
 ### 1. Install MSW
 
-````bash
+```bash
 npm install msw --save-dev
-```typescript
+```
 
 ### 2. Create Mock Handlers
 
@@ -68,7 +68,7 @@ export const handlers = [
     return new HttpResponse(null, { status: 404 });
   }),
 ];
-```typescript
+```
 
 ### 3. Create Server Setup
 
@@ -79,7 +79,7 @@ import { setupServer } from 'msw/node';
 import { handlers } from './handlers';
 
 export const server = setupServer(...handlers);
-```typescript
+```
 
 ### 4. Configure Jest
 
@@ -91,7 +91,7 @@ import { server } from './src/mocks/server';
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
-````
+```
 
 ## Example Test
 
@@ -207,13 +207,13 @@ import { handlers } from './handlers';
 export const worker = setupWorker(...handlers);
 ```
 
-````typescript
+```typescript
 // Start in development
 if (process.env.NODE_ENV === 'development') {
   const { worker } = await import('./mocks/browser');
   await worker.start();
 }
-```typescript
+```
 
 ## Related
 
@@ -223,4 +223,3 @@ if (process.env.NODE_ENV === 'development') {
 - [MSW Documentation](https://mswjs.io/docs)
 - [Stellar Horizon](/docs/integrations/horizon) - APIs to mock
 - [Soroban](/docs/integrations/soroban) - Smart contract testing
-````

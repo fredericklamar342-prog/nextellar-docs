@@ -134,10 +134,10 @@ NEXT_PUBLIC_HORIZON_URL=https://horizon.stellar.org
 NEXT_PUBLIC_NETWORK=PUBLIC
 ```
 
-````tsx
+```tsx
 // Access in your app
 const horizonUrl = process.env.NEXT_PUBLIC_HORIZON_URL;
-```css
+```
 
 ## Error Handling
 
@@ -157,7 +157,7 @@ const { error, refresh } = useStellarBalances(publicKey);
 if (error?.message.includes('404')) {
   return <p>Account not funded yet</p>;
 }
-````
+```
 
 ## Rate Limiting
 
@@ -167,11 +167,11 @@ Stellar's public Horizon servers have rate limits. For production:
 2. **Consider self-hosting** - Run your own Horizon instance
 3. **Use caching** - Implement client-side caching
 
-````tsx
+```tsx
 const { balances } = useStellarBalances(publicKey, {
   pollIntervalMs: 15000, // Poll every 15 seconds
 });
-```typescript
+```
 
 ## Related
 
@@ -180,4 +180,3 @@ const { balances } = useStellarBalances(publicKey, {
 - [useStellarBalances](/docs/hooks/use-stellar-balances) - Balance fetching hook
 - [useStellarPayment](/docs/hooks/use-stellar-payment) - Payment transactions
 - [useTransactionHistory](/docs/hooks/use-transaction-history) - Transaction queries
-````
