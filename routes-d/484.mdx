@@ -1,0 +1,66 @@
+---
+title: Address vs Account ID
+description: Compare the user-facing Stellar address and the underlying account ID formats.
+---
+
+# Stellar Address vs Account ID
+
+Stellar uses two formats for identifying accounts: the **Stellar address** (user-friendly) and the **Account ID** (raw format).
+
+## Definitions
+
+### Stellar Address
+
+A Stellar address is a base32-encoded string with a `G` prefix, designed for users. It includes error correction and is more readable.
+
+- **Format**: `G[A-Z2-7]{55}` (starts with G)
+- **Example**: `GA7KMQ4N2WJN3XJH5Y4N5J6Z7X8C9V0B1M2N3P4Q5R6S7T8V9W0Y1Z2`
+
+### Account ID
+
+The Account ID is the raw public key in hexadecimal format, used internally by the network.
+
+- **Format**: 32-byte public key (hex-encoded)
+- **Example**: `0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef`
+
+## When to Use Which
+
+| Use Case             | Format          | Reason                            |
+| -------------------- | --------------- | --------------------------------- |
+| User input           | Stellar address | Easier to read and type           |
+| API requests         | Stellar address | Public clients prefer G-addresses |
+| Backend storage      | Account ID      | Smaller storage footprint         |
+| Transaction building | Either          | SDK handles conversion            |
+
+## Examples
+
+### In SDK
+
+```ts
+import { StrKey } from '@stellar/stellar-sdk';
+
+// Encode account ID to address
+const accountId =
+  '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef';
+const address = StrKey.encodeEd25519PublicKey(accountId);
+// Returns: G...
+
+// Decode address to account ID
+const address = 'GA7KMQ4N2WJN3XJH5Y4N5J6Z7X8C9V0B1M2N3P4Q5R6S7T8V9W0Y1Z2';
+const accountId = StrKey.decodeEd25519PublicKey(address);
+// Returns: 32-byte Uint8Array
+```
+
+### With Nextellar Hooks
+
+```ts
+// Hooks accept both formats
+const { balances } = useStellarBalances(
+  'GA7KMQ4N2WJN3XJH5Y4N5J6Z7X8C9V0B1M2N3P4Q5R6S7T8V9W0Y1Z2'
+);
+```
+
+## Related
+
+- [Stellar Horizon](/docs/integrations/horizon)
+- [useStellarBalances](/docs/hooks/use-stellar-balances)

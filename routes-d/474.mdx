@@ -1,0 +1,50 @@
+---
+title: Stellar Protocol Versions
+description: How to find the current Stellar protocol version and its relevance to features.
+---
+
+# Stellar Protocol Versions
+
+The Stellar protocol version determines which features are available on the network. Check the version before using newer operations.
+
+## Finding the Current Version
+
+Query the protocol version via Horizon:
+
+```bash
+curl https://horizon.stellar.org/
+```
+
+The response includes:
+
+```json
+{
+  "stellar_core_version": "20.1.0",
+  "protocol_version": 20
+}
+```
+
+Alternatively, use the Stellar SDK:
+
+```ts
+import { Horizon } from '@stellar/stellar-sdk';
+
+const server = new Horizon.Server('https://horizon.stellar.org');
+const info = await server.info();
+console.log(info.protocol_version); // e.g., 20
+```
+
+## Protocol Version Relevance
+
+Most Stellar operations work across protocol versions. However, some features require minimum versions:
+
+- **Sponsored Reserves** (CAP-23) - Protocol 15+
+- **Claimable Balances** (CAP-29) - Protocol 14+
+- **Smart Contracts** - Protocol 20+ (Soroban)
+
+Always check the protocol version when targeting mainnet to ensure compatibility.
+
+## Related
+
+- [Stellar Horizon](/docs/integrations/horizon)
+- [Soroban (Smart Contracts)](https://docs.soroban.stellar.org)

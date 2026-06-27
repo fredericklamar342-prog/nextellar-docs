@@ -1,0 +1,72 @@
+---
+title: Account Merge Operation
+description: Document the account merge operation and its constraints on Stellar.
+---
+
+# Account Merge Operation
+
+The `account_merge` operation deletes an account and transfers the remaining XLM balance to another account.
+
+## The Merge Flow
+
+1. **Source Account** initiates the merge with `account_merge`.
+2. **Destination Account** receives the XLM balance after reserves are deducted.
+3. **Account Removal** happens after the transaction succeeds.
+
+```ts
+import { TransactionBuilder, Operation } from '@stellar/stellar-sdk';
+
+const transaction = new TransactionBuilder(sourceAccount, {
+  fee: BASE_FEE,
+  networkPassphrase: Networks.PUBLIC,
+})
+  .addOperation(
+    Operation.accountMerge({
+      destination: 'GDQOZR5PRK5ZQJHYYDMQXSTJQJFUCKJQSGRH5OHO6O2FJN5QJGNGQZW5Q',
+    })
+  )
+  .setTimeout(30)
+  .build();
+```
+
+## Residual Requirements
+
+- **No Trustlines**: The account must have only one trustline (the native XLM asset).
+- **No Offers**: All DEX offers must be canceled before merging.
+- **No Signers**: Only the master key signer should remain.
+- **Sufficient Balance**: Account must maintain the base reserve until the merge completes.
+- **No Sponsorships**: Any sponsored reserves must be ended first.
+
+After merge, the account is removed from the ledger. Any remaining XLM after reserve deductions goes to the destination.
+
+## Example
+
+```ts
+// Check account is clean before merge
+const account = await server.loadAccount(publicKey);
+
+// Verify no trustlines except native
+if (account.balances.length > 1) {
+  throw new Error('Cancel trustlines before merging');
+}
+
+// Verify no offers
+const offers = await server.offers().forAccount(publicKey).call();
+if (offers.records.length > 0) {
+  throw new Error('Cancel offers before merging');
+}
+
+// Build and submit merge
+const tx = new TransactionBuilder(account, {
+  fee: BASE_FEE,
+  networkPassphrase: Networks.PUBLIC,
+})
+  .addOperation(Operation.accountMerge({ destination: destinationAccountId }))
+  .setTimeout(30)
+  .build();
+```
+
+## Related
+
+- [Stellar Horizon](/docs/integrations/horizon)
+- [useStellarPayment](/docs/hooks/use-stellar-payment)

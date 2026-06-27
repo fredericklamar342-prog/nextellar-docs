@@ -1,0 +1,47 @@
+---
+title: Horizon URL Endpoints
+description: Canonical Horizon endpoints for Testnet and Mainnet networks.
+---
+
+# Horizon URL Endpoints
+
+Use the correct Horizon endpoint for your target network.
+
+## Base URLs
+
+| Network | URL                                   |
+| ------- | ------------------------------------- |
+| Testnet | `https://horizon-testnet.stellar.org` |
+| Mainnet | `https://horizon.stellar.org`         |
+
+## When to Use Each
+
+- **Testnet**: Development, testing, and tutorials. No real funds at risk.
+- **Mainnet**: Production dApps and real transactions. Uses real XLM.
+
+## Example
+
+```ts
+import { Horizon } from '@stellar/stellar-sdk';
+
+// Testnet for development
+const testnetServer = new Horizon.Server('https://horizon-testnet.stellar.org');
+
+// Mainnet for production
+const mainnetServer = new Horizon.Server('https://horizon.stellar.org');
+```
+
+With Nextellar:
+
+```tsx
+// Use testnet for development
+<WalletProvider horizonUrl="https://horizon-testnet.stellar.org">
+
+// Use mainnet for production
+<WalletProvider horizonUrl="https://horizon.stellar.org">
+```
+
+## Related
+
+- [Stellar Horizon](/docs/integrations/horizon)
+- [WalletProvider](/docs/hooks/wallet-provider)
