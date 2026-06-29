@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Mdx } from '@/components/mdx-components';
 import Breadcrumb from '@/components/bread-crumb';
 import AutoToc from '@/components/auto-toc';
+import EditThisPage from '@/components/edit-this-page';
 
 type tParams = Promise<{ slug: string[] }>;
 
@@ -59,6 +60,9 @@ const DocsPage = async ({ params }: { params: tParams }) => {
           <h1 className="text-3xl font-bold">{doc.title}</h1> */}
         </div>
         <Mdx code={doc.body.code} />
+        <div className="mt-12 pt-6 border-t border-[var(--color-border)]">
+          <EditThisPage filePath={doc._raw.flattenedPath} />
+        </div>
       </article>
 
       <AutoToc />
